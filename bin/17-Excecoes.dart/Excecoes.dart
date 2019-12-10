@@ -68,7 +68,7 @@ void caso4() {
 }
 
 //
-// CASO4: Use finally para tratamentos apos axecusao do Try Cath,
+// CASO5: Use throw Exception para lança uma exception,
 //
 
 void caso5() {
@@ -76,7 +76,7 @@ void caso5() {
     
     resultadoDouble = valorA / valorB;
     print('Resultado: $resultadoDouble');
-    if(resultadoDouble.isInfinite) throw Exception('A variavel valor deve ser =! 0');
+    if(resultadoDouble.isInfinite) throw Exception('A variavel valorB deve ser =! 0');
     
     
   }  catch (e) {
