@@ -60,8 +60,7 @@ class Contador {
   var _contagem = 1, termino, erro;
   final _controlador = StreamController<int>();
 
-  Sink<int> get sink =>
-      _controlador.sink; // não expor o controlador as interfaces
+  Sink<int> get sink => _controlador.sink; // não expor o controlador as interfaces
   Stream<int> get stream => _controlador.stream;
 
   Contador({this.termino, this.erro = 3}) {
@@ -146,7 +145,8 @@ Future metodos() async {
         print(eventos);
  */
 
-Future<List<dynamic>> eventosFuturos = stream.toList();
+Future<List<dynamic>> eventosFuturos;
+eventosFuturos = stream.toList();
 print(await eventosFuturos);
 
 }
