@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 //
-// * Queue é uma coleção entre chaves{}, sem indexm que manipula o inicio e o fim da lista!
+// * Queue é uma coleção entre chaves{}, sem index que manipula o inicio e o fim da lista!
 //
 void queue(){
 Queue<int> queue;

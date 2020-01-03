@@ -80,7 +80,7 @@ void hasSet(){
 }
 
 //
-// * SplaTreeSet organiza outomaticamente os elementos em ordem crescente
+// * SplaTreeSet organiza automaticamente os elementos em ordem crescente
 // * Por ser uma arvore de comparacoes não pode conter elementos null
 //
 

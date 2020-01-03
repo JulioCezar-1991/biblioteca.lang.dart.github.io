@@ -3,7 +3,7 @@
   - catch: Captura erros na lógica try.
   - on: captura especificas/conlhecidas na lógica try.
   - throw Exception: Excecao criada pelo usuario e tratada no catch.
-  - finally: Executado ao final try/catch. com excecao ou não! Utilizado recursos na lógica try
+  - finally: Executado ao final try/catch. com exceção ou não! Utilizado recursos na lógica try
  */
 
 //

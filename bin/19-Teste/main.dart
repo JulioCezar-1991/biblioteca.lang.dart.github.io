@@ -1,6 +1,5 @@
-import 'package:projeto/projeto.dart' as projeto;
 
-void main(List<String> arguments) {
+/* void main(List<String> arguments) {
 
   print('Hello world: ${projeto.calculate()}!');
   print('Listar Nomes: ${projeto.converterEmLista('Fernando Martins')}!');
@@ -11,3 +10,4 @@ void main(List<String> arguments) {
 
   
 }
+ */
