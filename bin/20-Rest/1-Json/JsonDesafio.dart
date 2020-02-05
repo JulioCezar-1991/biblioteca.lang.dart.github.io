@@ -108,8 +108,19 @@ void main() {
     }
   }''';
 
+  // Regra #1 identificar e criar as classes de acordo com o json
+  // Regra #2 criar os construtores do mais profundo ate a raiz
+  // Regra #3 faca o tratamento de erros
+
   Map<String, dynamic> parsedJson = jsonDecode(jsonData);
-  print(parsedJson);
+  //print('parsedJson $parsedJson');
+  Pessoa pessoa = Pessoa.fromJson(parsedJson);
+  //print('Decode: $parsedJson');
+  print('Uso Direto: ${parsedJson['bens']['veiculos'][0]['multas'][0]}\n');
+  print('Uso OBJETO: ${pessoa.bens.veiculos.map((e) => e.multas.map((e) => e.descrisao))}\n');
+  print('Uso OBJETO: ${pessoa.bens.veiculos.map((e) => e.marca).toList().toSet()}\n');
+
+
 }
 
 class Pessoa {
@@ -119,7 +130,7 @@ class Pessoa {
   List<String> tarefas;
   Conjuge conjuge;
   List<Filho> filhos;
-  List bens;
+  Bens bens;
 
   Pessoa(
       {this.nome,
@@ -130,15 +141,20 @@ class Pessoa {
       this.filhos,
       this.bens});
 
-  Pessoa.fromJson(Map<String, dynamic> json)
-      : this(
+  factory Pessoa.fromJson(Map<String, dynamic> json){
+     // List<dynamic> lista = json['filhos'] as List;
+     // List<Filho> dataLista = lista.map((e) => Filho.fronJson(e)).toList();
+
+     return Pessoa(
             nome: json['nome'],
             idade: json['idade'],
-            parentes: json['parentes'],
-            tarefas: json['tarefas'],
-            conjuge: json['conjuge'],
-            filhos: json['filhos'],
-            bens: json['bens']);
+            parentes: Parentes.fromJson(json['parentes']),
+            tarefas: List<String>.from(json['tarefas']), // json['tarefas'].cast<String>()
+            conjuge: Conjuge.fromJson(json['conjuge']),
+            filhos:(json['filhos'] as List<dynamic>).map((e) => Filho.fronJson(e)).toList(),
+            bens: Bens.fromJson(json['bens'])
+            );
+  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -184,7 +200,7 @@ class Conjuge {
       : this(
           nome: json['nome'],
           idade: json['idade'],
-          parentes: json['parentes'],
+          parentes: Parentes.fromJson(json['parentes']),
         );
   Map<String, dynamic> tojson() {
     return {
@@ -206,7 +222,7 @@ class Filho {
       : this(
           nome: json['nome'],
           idade: json['idade'],
-          vacinas: json['vacinas'],
+          vacinas: json['vacinas'].cast<String>(),
         );
 
   Map<String, dynamic> toJson() {
@@ -226,38 +242,40 @@ class Bens {
 
   Bens.fromJson(Map<String, dynamic> json)
       : this(
-          veiculos: json['veiculos'],
-          imoveis: json['imoveis'],
+          veiculos: (json['veiculos'] as List).map((e) => Veiculo.fromJson(e)).toList(),
+          imoveis: (json['imoveis'] as List).map((e) => Imovel.fromJson(e)).toList(),
         );
 
-  Map<String, dynamic> tojson() {
+  Map<String, dynamic> toJson() {
     return {
       'veiculos': veiculos,
       'imoveis': imoveis,
     };
   }
 }
-
 class Veiculo {
   String marca;
   String modelo;
-  Caracteristicas catacteristicas;
+  Caracteristicas caracteristicas;
   List<Multa> multas;
 
-  Veiculo({this.marca, this.modelo, this.catacteristicas, this.multas});
+  Veiculo({this.marca, this.modelo, this.caracteristicas, this.multas});
 
   Veiculo.fromJson(Map<String, dynamic> json)
       : this(
           marca: json['marca'],
           modelo: json['modelo'],
-          catacteristicas: json['catacteristicas'],
-          multas: json['multas'],
+          caracteristicas: Caracteristicas.fromJson(json['caracteristicas']),
+          multas: (json['multas'] as List).map((e) => Multa.fromJson(e)).toList(),
         );
-        Map<String, dynamic> toJson(){
-          return {
-            
-          };
-        }
+  Map<String, dynamic> toJson() {
+    return {
+      'marca': marca,
+      'modelo': modelo,
+      'catacteristicas': caracteristicas,
+      'multas': multas,
+    };
+  }
 }
 
 class Caracteristicas {
@@ -265,6 +283,19 @@ class Caracteristicas {
   int passageiros;
 
   Caracteristicas({this.tipo, this.passageiros});
+
+  Caracteristicas.fromJson(Map<String, dynamic> json)
+      : this(
+          tipo: json['tipo'],
+          passageiros: json['passageiros'],
+        );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'tipo': tipo,
+      'passageiros': passageiros,
+    };
+  }
 }
 
 class Multa {
@@ -273,6 +304,20 @@ class Multa {
   int pontos;
 
   Multa({this.descrisao, this.tipo, this.pontos});
+
+  Multa.fromJson(Map<String, dynamic> json)
+      : this(
+          descrisao: json['descrisao'],
+          tipo: json['tipo'],
+          pontos: json['pontos'],
+        );
+  Map<String, dynamic> toJson() {
+    return {
+      'descrisao': descrisao,
+      'tipo': tipo,
+      'pontos': pontos,
+    };
+  }
 }
 
 class Imovel {
@@ -281,6 +326,21 @@ class Imovel {
   List<Conta> contas;
 
   Imovel({this.tipo, this.endereco, this.contas});
+
+  Imovel.fromJson(Map<String, dynamic> json)
+      : this(
+          tipo: json['tipo'],
+          endereco: json['endereco'],
+          contas: (json['contas'] as List).map((e) => Conta.fromJson(e)).toList(),
+        );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'tipo': tipo,
+      'endereco': endereco,
+      'contas': contas,
+    };
+  }
 }
 
 class Conta {
@@ -288,4 +348,17 @@ class Conta {
   String valor;
 
   Conta({this.tipo, this.valor});
+
+  Conta.fromJson(Map<String, dynamic> json)
+      : this(
+          tipo: json['tipo'],
+          valor: json['valo;r'],
+        );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'tipo': tipo,
+      'valor': valor,
+    };
+  }
 }
