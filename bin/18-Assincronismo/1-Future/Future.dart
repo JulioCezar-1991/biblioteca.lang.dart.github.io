@@ -1,6 +1,6 @@
 //
 // * Future
-//  - è objeto que retorna um valor ou erro, resultado de uma execucao assincrona/futura.abstract
+//  - É o  objeto que retorna um valor ou erro, resultado de uma execucao assincrona/futura.abstract
 //
 
 //Funcao retorna string
@@ -11,7 +11,7 @@ String tarefa({int tempo = 1}) {
 
 Future<String> status(int tempo) {
   return Future.delayed(
-     Duration(seconds: tempo), () => 'Primeira Tarefa finalizada!\n');
+      Duration(seconds: tempo), () => 'Primeira Tarefa finalizada!\n');
 }
 
 void novaTarefa({int tempo = 1}) {
