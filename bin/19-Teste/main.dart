@@ -1,5 +1,5 @@
-
-/* void main(List<String> arguments) {
+/* 
+  void main(List<String> arguments) {
 
   print('Hello world: ${projeto.calculate()}!');
   print('Listar Nomes: ${projeto.converterEmLista('Fernando Martins')}!');
@@ -8,6 +8,5 @@
   print('Verificar nome: ${projeto.recuperarNome(['Fernando', 'Martins'])}');
   print('Resto da divisao: ${projeto.restoDivisao(12,3)}');
 
-  
 }
  */

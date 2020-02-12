@@ -8,7 +8,9 @@
   - O construtor deve ser constatante
   - As variaveis devem ser final ou static const
   
-   */
+*/
+
+import 'Brasil.dart';
 
 void main() {
   const pi = 3.14;
@@ -34,17 +36,8 @@ void main() {
     const constante = 2;
     print('contagem: ${constante + indiceFinal}');
   }
-  var pais = new Brasil(-15.654654, 47.2343432);
+  var pais = Brasil(-15.654654, 47.2343432);
   print(
       '\n ojeto: $pais capital: ${Brasil.capital}  latitude: ${pais.latitude} longtide: ${pais.longitude}');
   print('Estados: ${Brasil.estados}');
-}
-
-class Brasil {
-  final double latitude;
-  final double longitude;
-  static const String capital = 'Brasilia';
-  static const estados = ['GO, TO, MT, MS'];
-
-  const Brasil(this.latitude, this.longitude);
 }
