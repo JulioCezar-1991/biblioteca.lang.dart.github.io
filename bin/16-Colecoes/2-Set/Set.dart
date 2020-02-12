@@ -5,9 +5,8 @@ import 'dart:collection';
 //
 
 void linkedHasSet() {
+  Set<int> setInt = Set();
 
-  Set<int> setInt;
-  setInt = Set();
   print('Implementotação: ${setInt.runtimeType}');
   //setInt[0] = 0; //Não tem acesso a indice
 
@@ -17,35 +16,33 @@ void linkedHasSet() {
   setInt.add(null);
   setInt.add(34);
   setInt.remove(14);
-  
-  
-  for(int i = 0; i < setInt.length; i++){
+
+  for (int i = 0; i < setInt.length; i++) {
     print('FOR: ${setInt.elementAt(i)}');
   }
-  
-  for(var elemento in setInt){
+
+  for (var elemento in setInt) {
     print('For in Elemento: ${elemento}');
   }
-  
-  setInt.forEach((e)=> print('forEach: ${e}'));
+
+  setInt.forEach((e) => print('forEach: ${e}'));
 
   Set<int> listaA;
   listaA = {0, 1, 2, 3, 4};
 
   Set<int> listaB;
   listaB = {3, 4, 5, 6, 7};
-  
+
   print(listaA.difference(listaB));
   print(listaA.union(listaB));
   print(listaA.intersection(listaB));
   print(listaA.lookup(5));
-} 
+}
 
 //
 // HasSet é uma colecao de elementos unicos e desordenados
 //
-void hasSet(){
-  
+void hasSet() {
   HashSet<String> hashSet1;
   hashSet1 = HashSet();
 
@@ -68,15 +65,15 @@ void hasSet(){
   hashSet3.add(22);
   hashSet3.add(33);
   print('$hashSet1 \n$hashSet2 \n$hashSet3');
-   for(int i = 0; i < hashSet1.length; i++){
+  for (int i = 0; i < hashSet1.length; i++) {
     print('FOR: ${hashSet1.elementAt(i)}');
   }
-  
-  for(var elemento in hashSet2){
+
+  for (var elemento in hashSet2) {
     print('For in hashSet2: ${elemento}');
   }
-  
-  hashSet3.forEach((e)=> print('forEach hashSet3: ${e}'));
+
+  hashSet3.forEach((e) => print('forEach hashSet3: ${e}'));
 }
 
 //
@@ -84,7 +81,7 @@ void hasSet(){
 // * Por ser uma arvore de comparacoes não pode conter elementos null
 //
 
-void splayTreeSet(){
+void splayTreeSet() {
   SplayTreeSet<String> splayTreeSet;
   splayTreeSet = SplayTreeSet();
   print('Implementotação: ${splayTreeSet.runtimeType}');
@@ -93,20 +90,19 @@ void splayTreeSet(){
   splayTreeSet.add('info');
   splayTreeSet.add('info2');
   splayTreeSet.add('info5');
-  
+
   print(splayTreeSet);
-  for(int i = 0; i < splayTreeSet.length; i++ ){
+  for (int i = 0; i < splayTreeSet.length; i++) {
     // print(splayTreeSet[i]); //nao tem acesso a indice
     print('for: ${splayTreeSet.elementAt(i)}');
   }
-  for(var elemento in splayTreeSet){
+  for (var elemento in splayTreeSet) {
     print('for in : $elemento');
   }
   splayTreeSet.forEach((e) => print('forEach: $e'));
-
 }
 
-void main(){
+void main() {
   linkedHasSet();
   hasSet();
   splayTreeSet();
